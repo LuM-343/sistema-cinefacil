@@ -60,12 +60,31 @@ def ver_reservas():
         print(f"   Fecha: {r['tiempo']["Fecha"]} | Hora: {r['tiempo']["Hora"]} | Total: Q{r["boletos"]*precio}")
         i+=1
 
+def cambiar_precio():
+    precio=int(input("Ingresa el nuevo precio: "))
+    while precio<0:
+        print("Precio no válido")
+        precio=int(input("Ingresa el nuevo precio: "))
+
+def ingreso_horario():
+    fecha=input("Ingresa la fecha en formato dd/mm/aa:").strip().lower()
+    fecha=comprobacion(fecha)
+    hora=input("Ingresa la hora en formato hh/mm (24 horas): ").strip().lower()
+    hora=comprobacion(hora)
+    nuevo_horario={
+        "Fecha":fecha,
+        "Hora":hora
+    }
+    horario.append(nuevo_horario)
+    print("Horario Agregado de forma exitosa")
 
 while True:
     print("\nBienvenido a CineFácil")
     print("1. Crear una reserva")
     print("2. Ver reservas hechas")
-    print("3. Salir")
+    print("3. Cambiar precio de boletos")
+    print("4. Agregar nuevo horario")
+    print("5. Salir")
     opcion=input("Ingresa una opción: ")
 
     if opcion=="1":
@@ -75,6 +94,12 @@ while True:
         print("\nBienvenido, estas son las reservas")
         ver_reservas()
     elif opcion=="3":
+        print("\nCambio de precio de boleto")       #Funciones extra
+        cambiar_precio()
+    elif opcion=="4":
+        print("\nIngresa un nuevo horario")         #Funciones extra
+        ingreso_horario()
+    elif opcion=="5":
         print("\nGracias por preferi Cine Fácil, el mejor cine")
         break
     else:
